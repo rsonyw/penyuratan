@@ -27,7 +27,7 @@ class SuratmasukController extends Controller
      */
     public function create()
     {
-        return view('surat::buatsurat.suratmasuk.create');
+        return view('surat::buatsurat.suratkosong.create');
     }
 
     /**

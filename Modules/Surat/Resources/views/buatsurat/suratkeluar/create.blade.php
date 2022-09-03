@@ -89,7 +89,7 @@
                                             <div class="card mb-2">
                                                 <label class="form-label" for="isi">Isi
                                                     Surat</label>
-                                                <div class="col-12">
+                                                <div class="editor col-12">
                                                     <div id="full-wrapper">
                                                         <div id="full-container">
                                                             <textarea id="isi" class="form-control-lg" placeholder="Dengan Hormat..." name="isi"></textarea>
@@ -295,19 +295,28 @@
     </div>
     <!-- End: Customizer-->
     <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+
     <script>
+        tinymce.init({
+            selector: '#isi',
+            plugins: "link image code",
+            toolbar: 'undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify |outdent indent | link image | code'
+        })
+    </script>
+
+    {{-- <script>
         ClassicEditor
             .create(document.querySelector('#isi'))
             .catch(error => {
                 console.error(error);
             });
-    </script>
+    </script> --}}
     <script>
-        ClassicEditor
-            .create(document.querySelector('#tembusan'))
-            .catch(error => {
-                console.error(error);
-            });
+        tinymce.init({
+            selector: '#tembusan',
+            plugins: "link image code",
+            toolbar: 'undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify |outdent indent | link image | code'
+        })
     </script>
     <style>
         .ck-editor__editable {

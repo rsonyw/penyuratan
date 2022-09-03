@@ -1,10 +1,10 @@
 @include('surat::layouts.head')
-<style>
+{{-- <style>
     .p {
         font-family: 'Times New Roman';
         font-size: 12px;
     }
-</style>
+</style> --}}
 @php
 $hari = Carbon\Carbon::now();
 $surat = Modules\Surat\Entities\Suratkeluar::select()
@@ -14,6 +14,23 @@ $surat = Modules\Surat\Entities\Suratkeluar::select()
 $bulan = Carbon\Carbon::parse($surat->tanggal_buat)->format('m');
 $tahun = Carbon\Carbon::parse($surat->tanggal_buat)->format('Y');
 $tanggal = Carbon\Carbon::parse($surat->tanggal_buat)->translatedFormat('d F Y');
+
+$array_bln = [
+    '01' => 'I',
+    '02' => 'II',
+    '03' => 'III',
+    '04' => 'IV',
+    '05' => 'V',
+    '06' => 'VI',
+    '07' => 'VII',
+    '08' => 'VIII',
+    '09' => 'IX',
+    '10' => 'X',
+    '11' => 'XI',
+    '12' => 'XII',
+];
+$bln = $array_bln[$bulan];
+$nosurat = sprintf('%03d', $suratkeluar->nomor_surat);
 @endphp
 
 <body onload="window.print()">
@@ -53,7 +70,7 @@ $tanggal = Carbon\Carbon::parse($surat->tanggal_buat)->translatedFormat('d F Y')
                             {{ $tanggal }} </p>
                         <br>
                         <p style="font-size:12pt; font-family:'Times New Roman'; line-height:0.5">Nomor&emsp;&emsp;:
-                            {{ $suratkeluar->nomor_surat }}/B/SWB/{{ $bulan }}/{{ $tahun }} </p>
+                            {{ $nosurat }}/B/SWB/{{ $bln }}/{{ $tahun }} </p>
                         <p style="font-size:12pt; font-family:'Times New Roman'; line-height:0.5">
                             Sifat&emsp;&emsp;&emsp;:
                             {{ $suratkeluar->sifat }} </p>

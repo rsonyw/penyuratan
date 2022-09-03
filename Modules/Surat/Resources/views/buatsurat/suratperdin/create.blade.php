@@ -15,7 +15,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/surat">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Buat Surat Perjalanan Dinas
+                                    <li class="breadcrumb-item active">Buat Surat Perintah Dinas
                                     </li>
                                 </ol>
                             </div>
@@ -31,83 +31,92 @@
                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="card card-payment">
                             <div class="card-header">
-                                <h4 class="card-title">Surat Perjalanan Dinas</h4>
+                                <h4 class="card-title">Surat Perintah Dinas</h4>
                             </div>
                             <div class="card-body">
-                                <form action="javascript:void(0);" class="form">
+                                <form action="/surat/suratperdin" method="POST" class="form">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-12 position-relative">
                                             <div class="mb-2">
-                                                <label class="form-label" for="pd-default">Tanggal Buat</label>
-                                                <input type="text" id="pd-default" class="form-control flatpickr-basic"
-                                                    placeholder="18 June, 2020" />
+                                                <label class="form-label" for="tgl_suratperdin">Tanggal Buat</label>
+                                                <input type="text" id="tgl_suratperdin" name="tgl_suratperdin"
+                                                    class="form-control flatpickr-basic" placeholder="18 June, 2020" />
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-2">
-                                                <label class="form-label" for="payment-input-name">Sifat</label>
-                                                <input type="text" id="payment-input-name" class="form-control"
-                                                    placeholder="Penting" />
+                                                <label class="form-label" for="no_suratperdin">Nomor Surat</label>
+                                                <input type="text" id="no_suratperdin" name="no_suratperdin"
+                                                    class="form-control" placeholder="SPD No.028/A/SWB-SPD/VII/20222" />
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-2">
-                                                <label class="form-label" for="payment-input-name">Nomor Surat</label>
-                                                <input type="text" id="payment-input-name" class="form-control"
-                                                    placeholder="085/B/SWB/V/2022" />
+                                                <label class="form-label" for="dasar">Dasar</label>
+                                                <input type="text" id="dasar" name="dasar" class="form-control"
+                                                    placeholder="Penting">
+                                                </input>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="mb-2">
+                                                <label class="form-label" for="nama">Diperintahkan kepada :
+                                                </label><br>
+                                                <label class="form-label" for="nama">Nama/NIK
+                                                </label>
+                                                <select class="form-select" id="nama" name="nama">
+                                                    <option>-Pilih-</option>
+                                                    <option value="Supriadi Jufri">Supriadi Jufri</option>
+                                                    <option value="Aminudin">Aminudin</option>
+                                                    <option value="Ivan Fadilla">Ivan Fadilla</option>
+                                                </select>
+                                                <label class="form-label" for="jabatan">Jabatan
+                                                </label>
+                                                <select class="form-select" id="jabatan">
+                                                    <option>-Pilih-</option>
+                                                    <option value="Direktur Utama">Direktur Utama</option>
+                                                    <option value="Direktur Umum dan Keuangan">Direktur Umum dan
+                                                        Keuangan
+                                                    </option>
+                                                    <option value="Direktur Operasional">Direktur Operasional</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-2">
-                                                <label class="form-label" for="payment-input-name">Lampiran</label>
-                                                <input type="text" id="payment-input-name" class="form-control"
-                                                    placeholder="2 (dua) berkas" />
+                                                <label class="form-label" for="untuk">Untuk</label>
+                                                <input type="text" id="untuk" name="untuk" class="form-control"
+                                                    placeholder="Untuk...">
+                                                </input>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-2">
-                                                <label class="form-label" for="payment-input-name">Perihal</label>
-                                                <input type="text" id="payment-input-name" class="form-control"
-                                                    placeholder="Contoh: Surat Pernyataan" />
+                                                <label class="form-label" for="waktu">Waktu Pelaksanaan</label>
+                                                <input type="text" id="waktu" name="waktu"
+                                                    class="form-control flatpickr-range" placeholder="Dari... Sampai..." />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="mb-2">
+                                                <label class="form-label" for="payment-input-name">Catatan</label>
+                                                <p>1. Melaksanakan Perintah ini dengan seksama dan penuh rasa tanggung
+                                                    jawab.</p>
+                                                <p>2. Sebelum dan sesudah melaksanakan Perintah ini, agar melapor kepada
+                                                    Direktur Umum & Keuangan. </p>
+                                                <p>3. Pembebanan biaya ini sesuai dengan surat keputusan direksi </p>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-2">
-                                                <label class="form-label" for="payment-input-name">Penerima</label>
+                                                <label class="form-label" for="payment-input-name">Pengesahan Tujuan</label>
                                                 <input type="text" id="payment-input-name" class="form-control"
-                                                    placeholder="Kepala Dinas ...." />
-                                            </div>
-                                        </div>
-                                        <!-- full Editor start -->
-                                        <div class="col-12">
-                                            <div class="card mb-2">
-                                                <label class="form-label" for="payment-input-name">Isi
-                                                    Surat</label>
-                                                <div class="col-12">
-                                                    <div id="full-wrapper">
-                                                        <div id="full-container">
-                                                            <div class="editor">
-                                                                <input type="textarea" id="payment-input-name"
-                                                                    class="form-control" placeholder="Kepala Dinas ...." />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- full Editor end -->
-                                        <div class="col-12">
-                                            <div class="mb-2">
-                                                <label class="form-label" for="payment-input-name">Tertanda</label>
-                                                <input type="text" id="payment-input-name" class="form-control"
-                                                    placeholder="Nama PT dan yang bertanggungjawab" />
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="mb-2">
-                                                <label class="form-label" for="payment-input-name">Tembusan</label>
-                                                <input type="text" id="payment-input-name" class="form-control"
-                                                    placeholder="Tembusan (jika ada)" />
+                                                    placeholder="Pengesahan Tujuan">
+                                                </input>
                                             </div>
                                         </div>
                                         {{-- <div class="col-sm-6 col-12">
@@ -125,7 +134,7 @@
                                             </div>
                                         </div> --}}
                                         <div class="d-grid col-12">
-                                            <button type="submit" class="btn btn-primary">Buat Surat</button>
+                                            <button type="submit" class="btn btn-success">Buat Surat</button>
                                         </div>
                                     </div>
                                 </form>
@@ -277,4 +286,10 @@
 
     </div>
     <!-- End: Customizer-->
+
+    <script>
+        tinymce.init({
+            selector: '#isi'
+        })
+    </script>
 @endsection

@@ -2,6 +2,7 @@
 
 @section('content')
     <!-- BEGIN: Content-->
+
     <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -26,14 +27,12 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Data Surat Dinas Keluar Kantor</h2>
+                            <h2 class="content-header-title float-start mb-0">Data User</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="#">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Arsip Surat</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">Surat Dinas Keluar Kantor
+                                    <li class="breadcrumb-item active">Data User
                                     </li>
                                 </ol>
                             </div>
@@ -44,17 +43,17 @@
                     <div class="mb-1 breadcrumb-right">
                         <div class="dropdown">
                             <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#editUser">Tambah Data Surat</button>
+                                data-bs-target="#editUser">Tambah User</button>
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="content-body">
-
+                <!-- Basic table -->
                 @php
                     $i = 1;
                 @endphp
-                <!-- Basic table -->
                 <section id="basic-datatable">
                     <div class="row">
                         <div class="col-12">
@@ -67,123 +66,52 @@
                                                 <center>No</center>
                                             </th>
                                             <th>
-                                                <center>nomor surat</center>
+                                                <center>Nama</center>
                                             </th>
                                             <th>
-                                                <center>Tanggal Surat</center>
+                                                <center>Email</center>
                                             </th>
                                             <th>
-                                                <center>perihal</center>
+                                                <center>Password</center>
                                             </th>
                                             <th>
-                                                <center>Instansi</center>
-                                            </th>
-                                            <th>
-                                                <center>Keterangan</center>
-                                            </th>
-                                            <th>
-                                                <center>Dokumen</center>
+                                                <center>Action</center>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (!empty($surattgskks))
-                                            @foreach ($surattgskks as $surattgskk)
-                                                @php
-                                                    $surat = Modules\Surat\Entities\Surattgskk::select()
-                                                        ->where('id', $surattgskk->id)
-                                                        ->get()
-                                                        ->first();
-                                                    $bulan = Carbon\Carbon::parse($surat->tgl_surattgskk)->format('m');
-                                                    $tahun = Carbon\Carbon::parse($surat->tgl_surattgskk)->format('Y');
-                                                    $tanggal = Carbon\Carbon::parse($surat->tgl_surattgskk)->format('d-m-Y');
-                                                    $array_bln = [
-                                                        '01' => 'I',
-                                                        '02' => 'II',
-                                                        '03' => 'III',
-                                                        '04' => 'IV',
-                                                        '05' => 'V',
-                                                        '06' => 'VI',
-                                                        '07' => 'VII',
-                                                        '08' => 'VIII',
-                                                        '09' => 'IX',
-                                                        '10' => 'X',
-                                                        '11' => 'XI',
-                                                        '12' => 'XII',
-                                                    ];
-                                                    $bln = $array_bln[$bulan];
-                                                    $nosurat = sprintf('%03d', $surattgskk->no_surattgskk);
-                                                @endphp
+                                        @if (!empty($users))
+                                            @foreach ($users as $user)
                                                 <tr>
-                                                    <td> </td>
+                                                    <td></td>
                                                     <td>
                                                         <center>{{ $i++ }}</center>
                                                     </td>
                                                     <td>
-                                                        <center>
-                                                            {{ $nosurat }}/A/SWB-SDKK/{{ $bln }}/{{ $tahun }}
-                                                        </center>
+                                                        <center>{{ $user->name }}</center>
                                                     </td>
                                                     <td>
-                                                        <center>{{ $surattgskk->tgl_surattgskk }}</center>
+                                                        <center>{{ $user->email }}</center>
                                                     </td>
                                                     <td>
-                                                        <center>{{ $surattgskk->perihal }}</center>
-                                                    </td>
-                                                    <td>
-                                                        <center>{{ $surattgskk->instansi }}</center>
-                                                    </td>
-                                                    <td>
-                                                        <center>{{ $surattgskk->keterangan }}</center>
+                                                        <center>{{ $user->password }}</center>
                                                     </td>
                                                     <td>
                                                         <center>
-                                                            @if ($surattgskk->dokumen)
-                                                                <div class="btn-group dropup d-block">
-                                                                    <a href="{{ asset('storage/' . $surattgskk->dokumen) }}"
-                                                                        target="blank"
-                                                                        class="btn btn-icon btn-success"><span
-                                                                            data-feather="eye"></span></a>
-                                                                    <a href="#"
-                                                                        class="btn btn-icon btn-warning dropdown-toggle"
-                                                                        data-bs-toggle="dropdown"><span
-                                                                            data-feather="edit"></span>
-                                                                    </a>
-                                                                    <div class="dropdown-menu">
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ url('surat/printtgskk/' . $surattgskk->id . '/edit') }}">Edit
-                                                                            Isi Surat</a>
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ url('surat/surattgskk/' . $surattgskk->id . '/edit') }}">Edit
-                                                                            Arsip Surat</a>
-                                                                    </div>
-                                                                </div>
-                                                            @else
-                                                                <div class="btn-group dropup d-block">
-                                                                    <a href="#" target="blank"
-                                                                        class="btn btn-icon btn-danger"><span
-                                                                            data-feather="eye"></span></a>
-                                                                    <a href="{{ url('surat/printtgskk/' . $surattgskk->id) }}"
-                                                                        target="blank"
-                                                                        class="btn btn-icon btn-primary"><span
-                                                                            data-feather="printer"></span></a>
-                                                                    <a href="#"
-                                                                        class="btn btn-icon btn-warning dropdown-toggle"
-                                                                        data-bs-toggle="dropdown"><span
-                                                                            data-feather="edit"></span>
-                                                                    </a>
-                                                                    <div class="dropdown-menu">
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ url('surat/printtgskk/' . $surattgskk->id . '/edit') }}">Edit
-                                                                            Isi Surat</a>
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ url('surat/surattgskk/' . $surattgskk->id . '/edit') }}">Edit
-                                                                            Arsip Surat</a>
-                                                                    </div>
-                                                                </div>
-                                                            @endif
+                                                            <a href="{{ url('user/' . $user->id . '/edit') }}"
+                                                                class="btn btn-icon btn-warning"><span
+                                                                    data-feather="edit"></span></a>
+                                                            <form action="{{ url('/user', $user->id) }}" method="post"
+                                                                class="d-inline">
+                                                                @method('delete')
+                                                                @csrf
+                                                                <button class="btn btn-icon btn-danger border-0"
+                                                                    onclick="return confirm('Apakah anda yakin ingin menghapus data?')"><span
+                                                                        data-feather="x-circle"></span></button>
+                                                            </form>
                                                         </center>
                                                     </td>
+
                                                 </tr>
                                             @endforeach
                                         @endif
@@ -209,20 +137,20 @@
                 </div>
                 <div class="modal-body pb-5 px-sm-5 pt-50">
                     <div class="text-center mb-2">
-                        <h1 class="mb-1">Tambah Surat Tugas Keluar Kantor</h1>
+                        <h1 class="mb-1">Tambah Surat Masuk</h1>
                     </div>
-                    <form id="editUserForm" class="row gy-1 pt-75" method="POST" action="/surat/surattgskk"
+                    <form id="editUserForm" class="row gy-1 pt-75" method="POST" action="/surat/suratmasuk"
                         enctype="multipart/form-data" onsubmit="myFunction()">
                         @csrf
                         <div class="col-12 col-md-6">
-                            <label class="form-label" for="no_surattgskk">No Surat</label>
-                            <input type="text" id="no_surattgskk" name="no_surattgskk" class="form-control"
-                                placeholder="No Surat" value="{{ $no_surattgskk }}" />
+                            <label class="form-label" for="no_suratmasuk">No Surat Masuk</label>
+                            <input type="text" id="no_suratmasuk" name="no_suratmasuk" class="form-control"
+                                placeholder="No Surat Masuk" value="" />
                         </div>
-                        <div class="col-12 col-md-6 position-relative">
-                            <label class="form-label" for="tgl_surattgskk">Tanggal Surat</label>
-                            <input type="text" id="tgl_surattgskk" name="tgl_surattgskk"
-                                class="form-control flatpickr-basic" placeholder="Tanggal Surat" value="" />
+                        <div class="col-12 col-md-6">
+                            <label class="form-label" for="tgl_suratmasuk">Tanggal Surat Masuk</label>
+                            <input type="date" id="tgl_suratmasuk" name="tgl_suratmasuk"
+                                class="form-control flatpickr-basic" placeholder="Tanggal Surat Masuk" value="" />
                         </div>
                         <div class="col-12">
                             <label class="form-label" for="instansi">Instansi</label>
@@ -242,7 +170,15 @@
                             <input type="file" id="dokumen" name="dokumen" class="form-control"
                                 placeholder="lampiran dokumen" value="" />
                         </div>
-                        {{-- <div class="col-12 col-md-6">
+                        <div class="col-12 text-center mt-2 pt-50">
+                            <button type="submit" class="btn btn-success me-1">Simpan</button>
+                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                aria-label="Close">
+                                Batal
+                            </button>
+                        </div>
+                </div>
+                {{-- <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserStatus">Status</label>
                                 <select id="modalEditUserStatus" name="modalEditUserStatus" class="form-select"
                                     aria-label="Default select example">
@@ -252,7 +188,7 @@
                                     <option value="3">Suspended</option>
                                 </select>
                             </div> --}}
-                        {{-- <div class="col-12 col-md-6">
+                {{-- <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserLanguage">Language</label>
                                 <select id="modalEditUserLanguage" name="modalEditUserLanguage" class="select2 form-select"
                                     multiple>
@@ -264,36 +200,6 @@
                                     <option value="hebrew">Hebrew</option>
                                     <option value="sanskrit">Sanskrit</option>
                                     <option value="hindi">Hindi</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="form-label" for="modalEditUserCountry">Country</label>
-                                <select id="modalEditUserCountry" name="modalEditUserCountry" class="select2 form-select">
-                                    <option value="">Select Value</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Bangladesh">Bangladesh</option>
-                                    <option value="Belarus">Belarus</option>
-                                    <option value="Brazil">Brazil</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="China">China</option>
-                                    <option value="France">France</option>
-                                    <option value="Germany">Germany</option>
-                                    <option value="India">India</option>
-                                    <option value="Indonesia">Indonesia</option>
-                                    <option value="Israel">Israel</option>
-                                    <option value="Italy">Italy</option>
-                                    <option value="Japan">Japan</option>
-                                    <option value="Korea">Korea, Republic of</option>
-                                    <option value="Mexico">Mexico</option>
-                                    <option value="Philippines">Philippines</option>
-                                    <option value="Russia">Russian Federation</option>
-                                    <option value="South Africa">South Africa</option>
-                                    <option value="Thailand">Thailand</option>
-                                    <option value="Turkey">Turkey</option>
-                                    <option value="Ukraine">Ukraine</option>
-                                    <option value="United Arab Emirates">United Arab Emirates</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="United States">United States</option>
                                 </select>
                             </div>
                             <div class="col-12">
@@ -309,17 +215,11 @@
                                         billing address?</label>
                                 </div>
                             </div> --}}
-                        <div class="col-12 text-center mt-2 pt-50">
-                            <button type="submit" class="btn btn-success me-1">Simpan</button>
-                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                aria-label="Close">
-                                Batal
-                            </button>
-                        </div>
-                    </form>
-                </div>
+
+                </form>
             </div>
         </div>
+    </div>
     </div>
     <!--/ Tambah Surat Modal -->
 
@@ -332,6 +232,7 @@
             <div class="customizer-header px-2 pt-1 pb-0 position-relative">
                 <h4 class="mb-0">Theme Customizer</h4>
                 <p class="m-0">Customize & Preview in Real Time</p>
+
                 <a class="customizer-close" href="#"><i data-feather="x"></i></a>
             </div>
 

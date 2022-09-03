@@ -26,7 +26,7 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Data Surat Keluar</h2>
+                            <h2 class="content-header-title float-start mb-0">Data Surat Kosong</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a>
@@ -44,7 +44,7 @@
                     <div class="mb-1 breadcrumb-right">
                         <div class="dropdown">
                             <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#editUser">Tambah Data Surat</button>
+                                data-bs-target="#editUser">Tambah Data Surat Kosong</button>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                                                     $bln = $array_bln[$bulan];
                                                     $nosurat = sprintf('%03d', $suratkeluar->nomor_surat);
                                                 @endphp
-                                                @if (!empty($suratkeluar->perihal))
+                                                @if (empty($suratkeluar->perihal))
                                                     <tr>
                                                         <td> </td>
                                                         <td>
@@ -148,19 +148,10 @@
                                                                         target="blank"
                                                                         class="btn btn-icon btn-success"><span
                                                                             data-feather="eye"></span></a>
-                                                                    <a href="#"
-                                                                        class="btn btn-icon btn-warning dropdown-toggle"
-                                                                        data-bs-toggle="dropdown"><span
+                                                                    <a href="{{ url('surat/printsurat/' . $suratkeluar->id . '/edit') }}"
+                                                                        class="btn btn-icon btn-warning"><span
                                                                             data-feather="edit"></span>
                                                                     </a>
-                                                                    <div class="dropdown-menu">
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ url('surat/printsurat/' . $suratkeluar->id . '/edit') }}">Edit
-                                                                            Isi Surat</a>
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ url('surat/suratkeluar/' . $suratkeluar->id . '/edit') }}">Edit
-                                                                            Arsip Surat</a>
-                                                                    </div>
                                                                 </div>
                                                             @else
                                                                 <div class="btn-group dropup d-block">
@@ -171,19 +162,10 @@
                                                                         target="blank"
                                                                         class="btn btn-icon btn-primary"><span
                                                                             data-feather="printer"></span></a>
-                                                                    <a href="#"
-                                                                        class="btn btn-icon btn-warning dropdown-toggle"
-                                                                        data-bs-toggle="dropdown"><span
+                                                                    <a href="{{ url('surat/printsurat/' . $suratkeluar->id . '/edit') }}"
+                                                                        class="btn btn-icon btn-warning"><span
                                                                             data-feather="edit"></span>
                                                                     </a>
-                                                                    <div class="dropdown-menu">
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ url('surat/printsurat/' . $suratkeluar->id . '/edit') }}">Edit
-                                                                            Isi Surat</a>
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ url('surat/suratkeluar/' . $suratkeluar->id . '/edit') }}">Edit
-                                                                            Arsip Surat</a>
-                                                                    </div>
                                                                 </div>
                                                             @endif
                                                         </td>
@@ -213,9 +195,9 @@
                 </div>
                 <div class="modal-body pb-5 px-sm-5 pt-50">
                     <div class="text-center mb-2">
-                        <h1 class="mb-1">Tambah Surat Keluar</h1>
+                        <h1 class="mb-1">Tambah Surat Kosong</h1>
                     </div>
-                    <form id="editUserForm" class="row gy-1 pt-75" method="POST" action="/surat/suratkeluar"
+                    <form id="editUserForm" class="row gy-1 pt-75" method="POST" action="/surat/printsurat"
                         enctype="multipart/form-data" onsubmit="myFunction()">
                         @csrf
                         <div class="col-12 col-md-6">
@@ -226,11 +208,10 @@
                         </div>
                         <div class="col-12 col-md-6 position-relative">
                             <label class="form-label" for="tanggal_buat">Tanggal Surat Keluar</label>
-                            <input type="text" id="tanggal_buat" name="tanggal_buat"
-                                class="form-control flatpickr-basic" placeholder="Tanggal Surat Keluar" value=""
-                                data-msg="Please enter your last name" />
+                            <input type="text" id="tanggal_buat" name="tanggal_buat" class="form-control flatpickr-basic"
+                                placeholder="Tanggal Surat Keluar" value="" data-msg="Please enter your last name" />
                         </div>
-                        <div class="col-12">
+                        {{-- <div class="col-12">
                             <label class="form-label" for="tertanda">Instansi</label>
                             <input type="text" id="tertanda" name="tertanda" class="form-control" value=""
                                 placeholder="Nama Instansi" />
@@ -247,73 +228,6 @@
                             <label class="form-label" for="dokumen">Dokumen</label>
                             <input type="file" id="dokumen" name="dokumen" class="form-control"
                                 placeholder="lampiran dokumen" value="" />
-                        </div>
-                        {{-- <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalEditUserStatus">Status</label>
-                            <select id="modalEditUserStatus" name="modalEditUserStatus" class="form-select"
-                                aria-label="Default select example">
-                                <option selected>Status</option>
-                                <option value="1">Active</option>
-                                <option value="2">Inactive</option>
-                                <option value="3">Suspended</option>
-                            </select>
-                        </div> --}}
-                        {{-- <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalEditUserLanguage">Language</label>
-                            <select id="modalEditUserLanguage" name="modalEditUserLanguage" class="select2 form-select"
-                                multiple>
-                                <option value="english">English</option>
-                                <option value="spanish">Spanish</option>
-                                <option value="french">French</option>
-                                <option value="german">German</option>
-                                <option value="dutch">Dutch</option>
-                                <option value="hebrew">Hebrew</option>
-                                <option value="sanskrit">Sanskrit</option>
-                                <option value="hindi">Hindi</option>
-                            </select>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalEditUserCountry">Country</label>
-                            <select id="modalEditUserCountry" name="modalEditUserCountry" class="select2 form-select">
-                                <option value="">Select Value</option>
-                                <option value="Australia">Australia</option>
-                                <option value="Bangladesh">Bangladesh</option>
-                                <option value="Belarus">Belarus</option>
-                                <option value="Brazil">Brazil</option>
-                                <option value="Canada">Canada</option>
-                                <option value="China">China</option>
-                                <option value="France">France</option>
-                                <option value="Germany">Germany</option>
-                                <option value="India">India</option>
-                                <option value="Indonesia">Indonesia</option>
-                                <option value="Israel">Israel</option>
-                                <option value="Italy">Italy</option>
-                                <option value="Japan">Japan</option>
-                                <option value="Korea">Korea, Republic of</option>
-                                <option value="Mexico">Mexico</option>
-                                <option value="Philippines">Philippines</option>
-                                <option value="Russia">Russian Federation</option>
-                                <option value="South Africa">South Africa</option>
-                                <option value="Thailand">Thailand</option>
-                                <option value="Turkey">Turkey</option>
-                                <option value="Ukraine">Ukraine</option>
-                                <option value="United Arab Emirates">United Arab Emirates</option>
-                                <option value="United Kingdom">United Kingdom</option>
-                                <option value="United States">United States</option>
-                            </select>
-                        </div>
-                        <div class="col-12">
-                            <div class="d-flex align-items-center mt-1">
-                                <div class="form-check form-switch form-check-primary">
-                                    <input type="checkbox" class="form-check-input" id="customSwitch10" checked />
-                                    <label class="form-check-label" for="customSwitch10">
-                                        <span class="switch-icon-left"><i data-feather="check"></i></span>
-                                        <span class="switch-icon-right"><i data-feather="x"></i></span>
-                                    </label>
-                                </div>
-                                <label class="form-check-label fw-bolder" for="customSwitch10">Use as a
-                                    billing address?</label>
-                            </div>
                         </div> --}}
                         <div class="col-12 text-center mt-2 pt-50">
                             <button type="submit" class="btn btn-success me-1">Simpan</button>

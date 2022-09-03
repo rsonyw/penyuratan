@@ -86,7 +86,7 @@
                                             <div class="card-header">
                                                 <div>
                                                     <h2 class="fw-bolder mb-0">{{ $jumlah_stkk }}</h2>
-                                                    <p class="card-text">Surat Tugas Keluar Kantor</p>
+                                                    <p class="card-text">Surat Dinas Keluar Kantor</p>
                                                 </div>
                                                 <div class="avatar bg-light-danger p-50 m-0">
                                                     <div class="avatar-content">

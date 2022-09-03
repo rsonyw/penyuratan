@@ -40,6 +40,9 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/editors/quill/monokai-sublime.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/editors/quill/quill.snow.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/editors/quill/quill.bubble.css">
+    <script src="https://cdn.tiny.cloud/1/y2u8hfzu4ealgt1rsetm81qnn9of3ntt9fklzren08jhbhxc/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+
     <!-- Datatable-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css"

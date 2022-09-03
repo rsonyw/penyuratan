@@ -15,9 +15,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/surat">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Buat Surat</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">Surat Edaran
+                                    <li class="breadcrumb-item active">Buat Surat Kosong
                                     </li>
                                 </ol>
                             </div>
@@ -33,84 +31,63 @@
                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="card card-payment">
                             <div class="card-header">
-                                <h4 class="card-title">Surat Edaran</h4>
+                                <h4 class="card-title">Surat Masuk</h4>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="/surat/printedaran" class="form">
+                                <form method="POST" action="/surat/suratkeluar" class="form">
                                     @csrf
+
                                     <div class="row">
-                                        <div class="col-12">
-                                            <div class="mb-2">
-                                                <label class="form-label" for="no_suratedaran">Nomor Surat</label>
-                                                <input type="text" id="no_suratedaran" class="form-control"
-                                                    placeholder="085/B/SWB/V/2022" name="no_suratedaran"
-                                                    value="{{ $no_suratedaran }}" />
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="mb-2">
-                                                <label class="form-label" for="tentang">Tentang</label>
-                                                <input type="text" id="tentang" class="form-control"
-                                                    placeholder="Contoh: Perpanjangan Pemberlakuan Pembatasan Kegiatan Masyarakat Level 2 di Kabupaten Bogor"
-                                                    name="tentang" />
-                                            </div>
-                                        </div>
-                                        <!-- full Editor isi start -->
-                                        <div class="col-12">
-                                            <div class="card mb-2">
-                                                <label class="form-label" for="isi">Isi</label>
-                                                <div class="col-12">
-                                                    <div id="full-wrapper">
-                                                        <div id="full-container">
-                                                            <textarea id="isi" class="form-control" placeholder="Isi surat" name="isi"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- full Editor isi end -->
                                         <div class="col-12 position-relative">
                                             <div class="mb-2">
-                                                <label class="form-label" for="tgl_suratedaran">Tanggal Buat</label>
-                                                <input type="text" id="tgl_suratedaran"
+                                                <label class="form-label" for="tanggal_surat">Tanggal Surat</label>
+                                                <input type="text" id="tanggal_surat"
                                                     class="form-control flatpickr-basic" placeholder="18 June, 2020"
-                                                    name="tgl_suratedaran" />
+                                                    name="tanggal_surat" />
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-2">
-                                                <label class="form-label" for="instansi">instansi</label>
-                                                <input type="text" id="instansi" class="form-control"
-                                                    placeholder="Kepala Dinas ...." name="instansi" />
+                                                <label class="form-label" for="nomor_surat">Nomor Surat</label>
+                                                <input type="text" id="nomor_surat" class="form-control"
+                                                    placeholder="{{ $nomor_surat }}" name="nomor_surat"
+                                                    value="{{ $nomor_surat }}" />
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-2">
-                                                <label class="form-label" for="nama">Nama</label>
-                                                <input type="text" id="nama" class="form-control"
-                                                    placeholder="Nama yang bertanggung jawab" name="nama" />
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="mb-2">
-                                                <label class="form-label" for="jabatan">Jabatan</label>
-                                                <input type="text" id="jabatan" class="form-control"
-                                                    placeholder="Jabatan" name="jabatan" />
-                                            </div>
-                                            <hr>
-                                            <div class="mb-2">
-                                                <label class="form-label" for="perihal">Perihal (untuk arsip)</label>
+                                                <label class="form-label" for="perihal">Perihal</label>
                                                 <input type="text" id="perihal" class="form-control"
-                                                    placeholder="perihal" name="perihal" />
+                                                    placeholder="Penting" name="perihal" />
                                             </div>
+                                        </div>
+                                        <div class="col-12">
                                             <div class="mb-2">
-                                                <label class="form-label" for="keterangan">Keterangan (untuk
-                                                    arsip)</label>
-                                                <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Keterangan..."></textarea>
+                                                <label class="form-label" for="instansi">Instansi</label>
+                                                <input type="text" id="instansi" class="form-control"
+                                                    placeholder="085/B/SWB/V/2022" name="instansi" />
                                             </div>
-                                            <div class="d-grid col-12">
-                                                <button type="submit" class="btn btn-primary">Buat Surat</button>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mb-2">
+                                                <label class="form-label" for="keterangan">Keterangan</label>
+                                                <input type="text" id="keterangan" class="form-control"
+                                                    placeholder="2 (dua) berkas" name="keterangan" />
                                             </div>
+                                        </div>
+
+                                        <!-- Basic File Browser start -->
+                                        <div class="col-12">
+                                            <div class="mb-2">
+                                                <label for="formFile" class="form-label">Dokumen</label>
+                                                <input class="form-control" type="file" id="formFile" />
+                                            </div>
+                                        </div>
+
+                                        <!-- Basic File Browser end -->
+
+                                        <div class="d-grid col-12">
+                                            <button type="submit" class="btn btn-primary">Buat Surat Kosong</button>
                                         </div>
                                     </div>
                                 </form>
@@ -129,9 +106,8 @@
 
 
     <!-- BEGIN: Customizer-->
-    <div class="customizer d-none d-md-block"><a
-            class="customizer-toggle d-flex align-items-center justify-content-center" href="#"><i class="spinner"
-                data-feather="settings"></i></a>
+    <div class="customizer d-none d-md-block"><a class="customizer-toggle d-flex align-items-center justify-content-center"
+            href="#"><i class="spinner" data-feather="settings"></i></a>
         <div class="customizer-content">
             <!-- Customizer header -->
             <div class="customizer-header px-2 pt-1 pb-0 position-relative">
@@ -148,8 +124,8 @@
                 <p class="fw-bold">Skin</p>
                 <div class="d-flex">
                     <div class="form-check me-1">
-                        <input type="radio" id="skinlight" name="skinradio" class="form-check-input layout-name"
-                            checked data-layout="" />
+                        <input type="radio" id="skinlight" name="skinradio" class="form-check-input layout-name" checked
+                            data-layout="" />
                         <label class="form-check-label" for="skinlight">Light</label>
                     </div>
                     <div class="form-check me-1">
@@ -263,27 +239,11 @@
     </div>
     <!-- End: Customizer-->
     <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
-    {{-- <script>
+    <script>
         ClassicEditor
             .create(document.querySelector('#isi'))
             .catch(error => {
                 console.error(error);
             });
-    </script> --}}
-
-    <script>
-        tinymce.init({
-            selector: '#isi',
-            plugins: "link image code",
-            toolbar: 'undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify |outdent indent | link image | code'
-        })
     </script>
-
-    <style>
-        .ck-editor__editable {
-            min-height: 100px !important;
-        }
-
-        ;
-    </style>
 @endsection

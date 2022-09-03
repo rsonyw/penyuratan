@@ -14,7 +14,22 @@ $surat = Modules\Surat\Entities\Suratedaran::select()
 $bulan = Carbon\Carbon::parse($surat->tgl_suratedaran)->format('m');
 $tahun = Carbon\Carbon::parse($surat->tgl_suratedaran)->format('Y');
 $tanggal = Carbon\Carbon::parse($surat->tgl_suratedaran)->translatedFormat('d F Y');
-$nosurat = sprintf('%03d', $surat->no_suratedaran);
+$array_bln = [
+    '01' => 'I',
+    '02' => 'II',
+    '03' => 'III',
+    '04' => 'IV',
+    '05' => 'V',
+    '06' => 'VI',
+    '07' => 'VII',
+    '08' => 'VIII',
+    '09' => 'IX',
+    '10' => 'X',
+    '11' => 'XI',
+    '12' => 'XII',
+];
+$bln = $array_bln[$bulan];
+$nosurat = sprintf('%03d', $suratedaran->no_suratedaran);
 @endphp
 
 <body onload="window.print()">
@@ -34,13 +49,13 @@ $nosurat = sprintf('%03d', $surat->no_suratedaran);
                     <br>
                     <div class="col-lg-10 px-3">
                         <center>
-                            <h1 style="font-size:16pt; font-family:'Times New Roman'; color:black;"><b><u>Surat
-                                        Edaran</u></b>
+                            <h1 style="font-size:16pt; font-family:'Times New Roman'; color:black;"><b><u>SURAT
+                                        EDARAN</u></b>
                             </h1>
                         </center>
                         <center>
                             <p style="font-size:12pt; font-family:'Times New Roman';">
-                                <b><u>{{ $nosurat }}/A/SWB/{{ $bulan }}/{{ $tahun }}</u></b>
+                                <b><u>{{ $nosurat }}/A/SWB/{{ $bln }}/{{ $tahun }}</u></b>
                             </p>
                         </center>
                         <br>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -23,7 +24,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('surat::user.create', [
+            'users' => User::all(),
+        ]);
     }
 
     /**
@@ -56,7 +59,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('surat::user.edit', compact('user'));
     }
 
     /**
@@ -79,6 +83,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteuser = User::find($id);
+        $deleteuser->delete();
+        return redirect()->back()->with('status', 'Data berhasil dihapus!');
     }
 }

@@ -30,7 +30,7 @@
                     <ul class="menu-content">
                         {{-- <li><a class="d-flex align-items-center" href="/surat/suratmasuk/create"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="List">Surat Masuk</span></a>
+                                    data-i18n="List">Surat Kosong</span></a>
                         </li> --}}
                         <li><a class="d-flex align-items-center" href="/surat/printsurat/create"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
@@ -42,11 +42,11 @@
                         </li>
                         <li><a class="d-flex align-items-center" href="/surat/suratperdin/create"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Edit">Surat Perjalanan Dinas</span></a>
+                                    data-i18n="Edit">Surat Perintah Dinas</span></a>
                         </li>
-                        <li><a class="d-flex align-items-center" href="/surat/surattgskk/create"><i
+                        <li><a class="d-flex align-items-center" href="/surat/printtgskk/create"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Add">Surat Tugas Keluar
+                                    data-i18n="Add">Surat Dinas Keluar
                                     Kantor</span></a>
                         </li>
                         <li><a class="d-flex align-items-center" href="/surat/suratlembur/create"><i
@@ -73,49 +73,40 @@
                         </li>
                         <li><a class="d-flex align-items-center" href="/surat/suratperdin"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Edit">Surat Perjalanan Dinas</span></a>
+                                    data-i18n="Edit">Surat Perintah Dinas</span></a>
                         </li>
                         <li><a class="d-flex align-items-center" href="/surat/surattgskk"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Add">Surat Tugas Keluar
+                                    data-i18n="Add">Surat Dinas Keluar
                                     Kantor</span></a>
                         </li>
                         <li><a class="d-flex align-items-center" href="/surat/suratlembur"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="Add">Surat Perintah Lembur</span></a>
                         </li>
+                        <li><a class="d-flex align-items-center" href="/surat/suratkosong"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Add">Surat Kosong</span></a>
+                        </li>
                     </ul>
                 </li>
-                <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Menu Tambahan</span><i
-                        data-feather="more-horizontal"></i>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="/surat/datapegawai"><i
-                            data-feather="database"></i><span class="menu-title text-truncate"
-                            data-i18n="Invoice">Data Pegawai SPD</span></a>
-                    {{-- <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="/surat/printsurat/create"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="List">Surat Keluar</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="/surat/printedaran/create"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Preview">Surat Edaran</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="/surat/suratperdin/create"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Edit">Surat Perjalanan Dinas</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="/surat/surattgskk/create"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Add">Surat Tugas Keluar
-                                    Kantor</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="/surat/suratlembur/create"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Add">Surat Perintah Lembur</span></a>
-                        </li>
-                    </ul> --}}
-                </li>
+                @php
+                    $user = Illuminate\Support\Facades\Auth::user();
+                @endphp
+                @if ($user->id == 1)
+                    <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Menu Tambahan</span><i
+                            data-feather="more-horizontal"></i>
+                    </li>
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="/user/create"><i
+                                data-feather="user"></i><span class="menu-title text-truncate"
+                                data-i18n="Invoice">Data
+                                User</span></a>
+                    </li>
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="/surat/datapegawai"><i
+                                data-feather="database"></i><span class="menu-title text-truncate"
+                                data-i18n="Invoice">Data Pegawai SPD</span></a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

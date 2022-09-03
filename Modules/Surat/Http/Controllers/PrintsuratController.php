@@ -107,8 +107,11 @@ class PrintsuratController extends Controller
             'dokumen' => $request->dokumen
         ]);
 
+        if ($request->perihal) {
+            return redirect()->action([SuratkeluarController::class, 'index'])->with('success', 'Surat Berhasil Dibuat, Silahkan Cetak Surat!');
+        }
 
-        return redirect()->action([SuratkeluarController::class, 'index'])->with('success', 'Surat Berhasil Dibuat, Silahkan Cetak Surat!');
+        return redirect()->action([SuratkosongController::class, 'index'])->with('success', 'Surat Kosong Berhasil Dibuat');
     }
 
     /**

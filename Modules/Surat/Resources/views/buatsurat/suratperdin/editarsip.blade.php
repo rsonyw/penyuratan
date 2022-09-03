@@ -15,7 +15,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/surat">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Edit Surat Perjalanan Dinas
+                                    <li class="breadcrumb-item active">Edit Surat Perintah Dinas
                                     </li>
                                 </ol>
                             </div>
@@ -31,7 +31,7 @@
                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="card card-payment">
                             <div class="card-header">
-                                <h4 class="card-title">Surat Perjalanan Dinas</h4>
+                                <h4 class="card-title">Surat Perintah Dinas</h4>
                             </div>
                             <div class="card-body">
                                 <form method="POST" action="{{ url('surat/suratperdin', $suratperdin->id) }}"

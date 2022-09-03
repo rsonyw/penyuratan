@@ -82,6 +82,8 @@
                                         <div class="col-12">
                                             <div class="mb-2">
                                                 <label class="form-label" for="dokumen">Dokumen : </label>
+                                                <input type="hidden" name="oldDokumen"
+                                                    value="{{ $surattgskk->dokumen }}">
                                                 <label for="dokumen"
                                                     class="form-label">{{ $surattgskk->dokumen }}</label>
                                                 <input type="file" id="dokumen" class="form-control"

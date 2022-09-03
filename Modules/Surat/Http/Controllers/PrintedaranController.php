@@ -17,7 +17,7 @@ class PrintedaranController extends Controller
     public function index()
     {
         return view('surat::buatsurat.suratedaran.print', [
-            'suratedaran' => Suratedaran::select()->where('id', request('id'))->get()->first(),
+            // 'suratedaran' => Suratedaran::select()->where('id', request('id'))->get()->first(),
         ]);
     }
 

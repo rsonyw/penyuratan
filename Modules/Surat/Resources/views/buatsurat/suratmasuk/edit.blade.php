@@ -79,6 +79,8 @@
                                         <div class="col-12">
                                             <div class="mb-2">
                                                 <label for="dokumen" class="form-label">Dokumen : </label>
+                                                <input type="hidden" name="oldDokumen"
+                                                    value="{{ $suratmasuk->dokumen }}">
                                                 <label for="dokumen"
                                                     class="form-label">{{ $suratmasuk->dokumen }}</label>
                                                 <input class="form-control" type="file" id="dokumen" name="dokumen"

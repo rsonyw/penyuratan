@@ -6,16 +6,24 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Surat\Entities\Surattgskk;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Support\Renderable;
 
-class SurattgskkController extends Controller
+class PrinttgskkController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
+    {
+        return view('surat::index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Renderable
+     */
+    public function create()
     {
         $terbaru = Surattgskk::select()->latest()->first();
         $cek = Carbon::parse($terbaru->tgl_surattgskk);
@@ -27,19 +35,9 @@ class SurattgskkController extends Controller
         }
 
         $no_surattgskk = $no . '/A/SWB-SDKK/' . $cek->format('m') . '/' . $cek->format('Y');
-        return view('surat::buatsurat.surattgskk.index', [
-            'surattgskks' => Surattgskk::all(),
+        return view('surat::buatsurat.surattgskk.create', [
             'no_surattgskk' => $no_surattgskk,
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('surat::buatsurat.surattgskk.create');
     }
 
     /**
@@ -57,23 +55,24 @@ class SurattgskkController extends Controller
         } elseif ($cek->format('Y') == Carbon::now()->format('Y')) {
             $no = $terbaru->no_surattgskk + 1;
         }
-        $dokumen = $request->file('dokumen')->store('dok_surattgskk');
-        if ($request->file('dokumen')) {
-            $dokumen;
-        }
 
         Surattgskk::create([
             'no_surattgskk' => str_replace("/A/SWB-SDKK/" . $cek->format('m') . "/" . $cek->format('Y'), "", $request->no_surattgskk),
             'tgl_surattgskk' => $request->tgl_surattgskk,
+            'kepada' => $request->kepada,
+            'untuk' => $request->untuk,
+            'waktu_pelaksanaan' => $request->waktu_pelaksanaan,
+            'tertanda' => $request->tertanda,
+            'nama' => $request->nama,
             'perihal' => $request->perihal,
             'keterangan' => $request->keterangan,
             'instansi' => $request->instansi,
-            'dokumen' => $dokumen,
+            'dokumen' => $request->dokumen,
         ]);
 
-
-        return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+        return redirect()->action([SurattgskkController::class, 'index'])->with('success', 'Surat Berhasil Dibuat, Silahkan Cetak Surat!');
     }
+
     /**
      * Show the specified resource.
      * @param int $id
@@ -81,7 +80,9 @@ class SurattgskkController extends Controller
      */
     public function show($id)
     {
-        return view('surat::show');
+        return view('surat::buatsurat.surattgskk.printtgskk', [
+            'surattgskk' => Surattgskk::select()->where('id', $id)->get()->first(),
+        ]);
     }
 
     /**
@@ -92,7 +93,7 @@ class SurattgskkController extends Controller
     public function edit($id)
     {
         $surattgskk = Surattgskk::find($id);
-        return view('surat::buatsurat.surattgskk.editarsip', compact('surattgskk'));
+        return view('surat::buatsurat.surattgskk.edit', compact('surattgskk'));
     }
 
     /**
@@ -106,24 +107,20 @@ class SurattgskkController extends Controller
         $rules = [
             'no_surattgskk' => 'required',
             'tgl_surattgskk' => 'required',
-            'instansi' => 'required',
-            'perihal' => 'required',
-            'keterangan' => 'required',
-            'dokumen' => '',
+            'kepada' => 'required',
+            'untuk' => 'required',
+            'waktu_pelaksanaan' => 'required',
+            'tertanda' => 'required',
+            'nama' => 'required',
+
         ];
 
         $validatedData = $request->validate($rules);
 
-        if ($request->file('dokumen')) {
-            if ($request->oldDokumen) {
-                Storage::delete($request->oldDokumen);
-            }
-            $validatedData['dokumen'] = $request->file('dokumen')->store('dok_surattgskk');
-        }
         $input = $validatedData;
         Surattgskk::where('id', $id)->update($input);
 
-        return redirect('/surat/surattgskk')->with('success', 'Data berhasil diupdate!');
+        return redirect('/surat/surattgskk')->with('success', 'Data berhasil diupdate');
     }
 
     /**

@@ -148,14 +148,6 @@
                                                     placeholder="Ex: 750000" name="representatif" />
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="mb-2">
-                                                <label class="form-label" for="dokumen">Tanda Tangan (Khusus
-                                                    Direksi)</label>
-                                                <input type="file" id="dokumen" name="dokumen" class="form-control"
-                                                    placeholder="lampiran dokumen" />
-                                            </div>
-                                        </div>
 
                                         <div class="d-grid col-12">
                                             <button type="submit" class="btn btn-success">Tambah Data Pegawai</button>
