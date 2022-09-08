@@ -4,12 +4,11 @@ namespace Modules\Surat\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Storage;
 use Modules\Surat\Entities\Datapegawai;
 use Modules\Surat\Entities\Suratperdin;
 use Illuminate\Contracts\Support\Renderable;
 
-class SuratperdinController extends Controller
+class PrintperdinController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,7 @@ class SuratperdinController extends Controller
      */
     public function index()
     {
-        return view('surat::buatsurat.suratperdin.index', [
-            'suratperdins' => Suratperdin::all(),
-        ]);
+        return view('surat::index');
     }
 
     /**
@@ -28,8 +25,9 @@ class SuratperdinController extends Controller
      */
     public function create()
     {
-
-        return view('surat::buatsurat.suratperdin.create');
+        return view('surat::buatsurat.suratperdin.create', [
+            'datapegawais' => Datapegawai::all(),
+        ]);
     }
 
     /**
@@ -39,7 +37,6 @@ class SuratperdinController extends Controller
      */
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'tgl_suratperdin' => 'required',
             'no_suratperdin' => 'required',
@@ -73,7 +70,9 @@ class SuratperdinController extends Controller
      */
     public function show($id)
     {
-        return view('surat::show');
+        return view('surat::buatsurat.suratperdin.print', [
+            'suratperdin' => Suratperdin::select()->where('id', $id)->get()->first(),
+        ]);
     }
 
     /**
@@ -83,8 +82,7 @@ class SuratperdinController extends Controller
      */
     public function edit($id)
     {
-        $suratperdin = Suratperdin::find($id);
-        return view('surat::buatsurat.suratperdin.editarsip', compact('suratperdin'));
+        return view('surat::edit');
     }
 
     /**
@@ -95,38 +93,7 @@ class SuratperdinController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rules = [
-            'no_suratperdin' => 'required',
-            'tgl_suratperdin' => 'required',
-            'dasar' => 'required',
-            'nama' => 'required',
-            'jabatan' => 'required',
-            'pengikut1' => '',
-            'pengikut2' => '',
-            'pengikut3' => '',
-            'pengikut4' => '',
-            'pengikut5' => '',
-            'untuk' => 'required',
-            'waktu' => 'required',
-            'pengesahan' => 'required',
-            'instansi' => 'required',
-            'perihal' => 'required',
-            'keterangan' => 'required',
-            'dokumen' => '',
-        ];
-
-        $validatedData = $request->validate($rules);
-
-        if ($request->file('dokumen')) {
-            if ($request->oldDokumen) {
-                Storage::delete($request->oldDokumen);
-            }
-            $validatedData['dokumen'] = $request->file('dokumen')->store('dok_suratperdin');
-        }
-        $input = $validatedData;
-        Suratperdin::where('id', $id)->update($input);
-
-        return redirect('/surat/suratperdin')->with('success', 'Data berhasil diupdate!');
+        //
     }
 
     /**

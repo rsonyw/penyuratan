@@ -27,7 +27,7 @@ class SuratedaranController extends Controller
             $no = $terbaru->no_suratedaran + 1;
         }
 
-        $no_suratedaran = $no . '/A/SWB/' . $cek->format('m') . '/' . $cek->format('Y');
+        $no_suratedaran = $no . '/A/SWB-EDR/' . $cek->format('m') . '/' . $cek->format('Y');
 
         return view('surat::buatsurat.suratedaran.index', [
             'suratedarans' => Suratedaran::all(),
@@ -66,7 +66,7 @@ class SuratedaranController extends Controller
         }
 
         Suratedaran::create([
-            'no_suratedaran' => str_replace("/A/SWB/" . $cek->format('m') . "/" . $cek->format('Y'), "", $request->no_suratedaran),
+            'no_suratedaran' => str_replace("/A/SWB-EDR/" . $cek->format('m') . "/" . $cek->format('Y'), "", $request->no_suratedaran),
             'tgl_suratedaran' => $request->tgl_suratedaran,
             'perihal' => $request->perihal,
             'instansi' => $request->instansi,

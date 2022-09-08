@@ -51,16 +51,15 @@ class DatapegawaiController extends Controller
             'no_rek' => 'required',
             'saku' => 'required',
             'representatif' => '',
-            'dokumen' => '',
+            'ttd' => '',
         ]);
 
-        if ($request->file('dokumen')) {
-            $validatedData['dokumen'] = $request->file('dokumen')->store('dok_ttd');
-
-            Datapegawai::create($validatedData);
-
-            return redirect('/surat/datapegawai')->with('success', 'Data berhasil ditambahkan!');
+        if ($request->file('ttd')) {
+            $validatedData['ttd'] = $request->file('ttd')->store('dok_ttd');
         }
+
+        Datapegawai::create($validatedData);
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -106,21 +105,19 @@ class DatapegawaiController extends Controller
             'no_rek' => 'required',
             'saku' => 'required',
             'representatif' => '',
-            'dokumen' => '',
+            'ttd' => '',
         ];
         $validatedData = $request->validate($rules);
 
-        if ($request->file('dokumen')) {
-            if ($request->oldDokumen) {
-                Storage::delete($request->oldDokumen);
+        if ($request->file('ttd')) {
+            if ($request->oldttd) {
+                Storage::delete($request->oldttd);
             }
-            $validatedData['dokumen'] = $request->file('dokumen')->store('dok_ttd');
-
-            $input = $validatedData;
-            Datapegawai::where('id', $id)->update($input);
-
-            return redirect('/surat/datapegawai')->with('success', 'Data berhasil diupdate!');
+            $validatedData['ttd'] = $request->file('ttd')->store('dok_ttd');
         }
+        $input = $validatedData;
+        Datapegawai::where('id', $id)->update($input);
+        return redirect('/surat/datapegawai')->with('success', 'Data berhasil diupdate!');
     }
 
     /**
@@ -133,8 +130,8 @@ class DatapegawaiController extends Controller
         $datapegawai = Datapegawai::find($id);
         if ($datapegawai->dokumen) {
             Storage::delete($datapegawai->dokumen);
-            $datapegawai->delete();
-            return redirect()->back()->with('status', 'Data berhasil dihapus!');
         }
+        $datapegawai->delete();
+        return redirect()->back()->with('status', 'Data berhasil dihapus!');
     }
 }

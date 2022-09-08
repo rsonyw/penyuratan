@@ -121,7 +121,7 @@
                                                         <center>{{ $datapegawai->alamat }}</center>
                                                     </td>
                                                     <td>
-                                                        <center>{{ $datapegawai->jenis_kelamin }}n</center>
+                                                        <center>{{ $datapegawai->jenis_kelamin }}</center>
                                                     </td>
                                                     <td>
                                                         <center>{{ $datapegawai->pendidikan }}</center>

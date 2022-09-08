@@ -139,7 +139,7 @@
                                                                     <a href="#" target="blank"
                                                                         class="btn btn-icon btn-danger"><span
                                                                             data-feather="eye"></span></a>
-                                                                    <a href="{{ url('surat/printperdin/') }}"
+                                                                    <a href="{{ url('surat/printperdin/' . $suratperdin->id) }}"
                                                                         target="blank"
                                                                         class="btn btn-icon btn-primary"><span
                                                                             data-feather="printer"></span></a>

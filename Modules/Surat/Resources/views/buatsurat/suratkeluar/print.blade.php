@@ -104,6 +104,7 @@ $nosurat = sprintf('%03d', $suratkeluar->nomor_surat);
                         <p style="font-size:12pt; font-family:'Times New Roman'; line-height:1">Tembusan kepada Yth.:
                             <font size="3" face="Times">{!! $suratkeluar->tembusan !!}</font>
                         </p>
+                    </div>
                 </td>
             </tr>
         </tbody>

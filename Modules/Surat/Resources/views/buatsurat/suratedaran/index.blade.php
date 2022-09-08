@@ -121,7 +121,7 @@
                                                     </td>
                                                     <td>
                                                         <center>
-                                                            {{ $nosurat }}/A/SWB/{{ $bln }}/{{ $tahun }}
+                                                            {{ $nosurat }}/A/SWB-EDR/{{ $bln }}/{{ $tahun }}
                                                         </center>
                                                     </td>
                                                     <td>

@@ -6,6 +6,7 @@ use Modules\Surat\Http\Controllers\PrinttgskkController;
 use Modules\Surat\Http\Controllers\SurattgskkController;
 use Modules\Surat\Http\Controllers\DatapegawaiController;
 use Modules\Surat\Http\Controllers\PrintedaranController;
+use Modules\Surat\Http\Controllers\PrintperdinController;
 use Modules\Surat\Http\Controllers\SuratedaranController;
 use Modules\Surat\Http\Controllers\SuratkeluarController;
 use Modules\Surat\Http\Controllers\SuratkosongController;
@@ -36,6 +37,7 @@ Route::prefix('surat')->group(function () {
     Route::resource('/printsurat', PrintsuratController::class);
     Route::resource('/printedaran', PrintedaranController::class);
     Route::resource('/printtgskk', PrinttgskkController::class);
+    Route::resource('/printperdin', PrintperdinController::class);
     // Route::get('/cetaksurat', [SuratkeluarController::class, 'show']);
     Route::resource('/bsuratkeluar', BsuratkeluarController::class);
     Route::resource('/datapegawai', DatapegawaiController::class);

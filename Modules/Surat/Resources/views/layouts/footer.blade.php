@@ -34,6 +34,7 @@
     <script src="../../../app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
     <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js"></script>
     <script src="../../../app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
+    <script src="../../../app-assets/vendors/js/forms/repeater/jquery.repeater.min.js"></script>
     <!-- END: Page Vendor JS-->
     <!-- BEGIN: Page Vendor JS-->
     <script src="../../../app-assets/vendors/js/charts/apexcharts.min.js"></script>
@@ -54,6 +55,7 @@
     <!-- Datatable-->
     <script src="../../../app-assets/js/scripts/tables/table-datatables-basic.js"></script>
     {{-- <script src="../../../app-assets/js/scripts/tables/table-datatables-basic.min.js"></script> --}}
+    <script src="../../../app-assets/js/scripts/forms/form-repeater.min.js"></script>
 
 
 

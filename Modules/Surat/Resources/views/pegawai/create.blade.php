@@ -34,9 +34,9 @@
                                 <h4 class="card-title">Data Pegawai</h4>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="/surat/datapegawai" class="form">
+                                <form method="POST" action="/surat/datapegawai" class="form"
+                                    enctype="multipart/form-data">
                                     @csrf
-
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="mb-2">
@@ -146,6 +146,12 @@
                                                 <label class="form-label" for="representatif">Uang Representatif</label>
                                                 <input type="text" id="representatif" class="form-control"
                                                     placeholder="Ex: 750000" name="representatif" />
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-2">
+                                                <input type="hidden" id="ttd" class="form-control"
+                                                    placeholder="Ex: 750000" name="ttd" />
                                             </div>
                                         </div>
 

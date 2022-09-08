@@ -55,7 +55,7 @@ $nosurat = sprintf('%03d', $suratedaran->no_suratedaran);
                         </center>
                         <center>
                             <p style="font-size:12pt; font-family:'Times New Roman';">
-                                <b><u>{{ $nosurat }}/A/SWB/{{ $bln }}/{{ $tahun }}</u></b>
+                                <b><u>{{ $nosurat }}/A/SWB-EDR/{{ $bln }}/{{ $tahun }}</u></b>
                             </p>
                         </center>
                         <br>
